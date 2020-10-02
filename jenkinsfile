@@ -1,0 +1,21 @@
+pipeline {
+  agent any
+  trigger {
+    // poll source control management system.
+    pollSCM('* * * * *') // once per min
+    // pollSCM('H/5 * * * *') // once per 5/min
+  }
+
+  // need to match jdk
+  tools {
+    jdk 'Jdk12'
+  }
+
+  stages {
+    stage('Prepare the flow') {
+      steps {
+        echo 'Hi now we are preparing the flow'
+      }
+    }
+  }
+}gr
