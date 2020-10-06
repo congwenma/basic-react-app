@@ -1,6 +1,6 @@
 pipeline {
   // agent any
-  trigger {
+  triggers {
     // poll source control management system.
     pollSCM('* * * * *') // once per min
     // pollSCM('H/5 * * * *') // once per 5/min
