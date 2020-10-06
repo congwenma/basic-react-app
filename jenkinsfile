@@ -9,7 +9,7 @@ pipeline {
   agent {
     docker {
       // label 'proper docker registry'
-      image 'node:latest'
+      image 'node:14-alpine'
     }
   }
 
@@ -17,7 +17,14 @@ pipeline {
   stages {
     stage('Prepare the flow') {
       steps {
-        echo '*** Hi now we are preparing the flow'
+        script {
+          echo "*** Hi now we are preparing the flow ${env.BRANCH_NAME}"
+          if (env.BRANCH_NAME ==~ /release_v(\d.\d*)/) {
+            echo "*** Releasing"
+          } else {
+            echo "*** Not Releasing"
+          }
+        }
       }
     }
 
@@ -25,8 +32,7 @@ pipeline {
 
       steps {
         sh """
-          npm install
-          npm run build
+          ls -hal build/
         """
       }
     }
