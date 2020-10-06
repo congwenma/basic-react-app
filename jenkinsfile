@@ -7,9 +7,9 @@ pipeline {
   }
 
   // need to match jdk
-  tools {
-    jdk 'Jdk12'
-  }
+  // tools {
+  //   jdk 'Jdk12'
+  // }
 
   stages {
     stage('Prepare the flow') {
