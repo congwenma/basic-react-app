@@ -1,3 +1,5 @@
+// missing docker
+// https://stackoverflow.com/questions/64157002/docker-not-found-when-building-image-in-jenkins-pipeline
 pipeline {
   agent {
     docker {
