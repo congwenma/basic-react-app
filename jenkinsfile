@@ -17,5 +17,14 @@ pipeline {
         echo '*** Hi now we are preparing the flow'
       }
     }
+
+    stage('Building it out') {
+      steps {
+        sh """
+          npm install
+          npm run build
+        """
+      }
+    }
   }
 }gr
