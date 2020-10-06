@@ -1,33 +1,32 @@
+// missing docker
+// https://stackoverflow.com/questions/64157002/docker-not-found-when-building-image-in-jenkins-pipeline
+
+// error:
+//
+//    + docker inspect -f . hub.docker.com/node:14-alpine
+//    /var/jenkins_home/workspace/multibranch_PR-1@tmp/durable-1be7b220/script.sh: 1: /var/jenkins_home/workspace/multibranch_PR-1@tmp/durable-1be7b220/script.sh: docker: not found
 pipeline {
-  agent any
+  agent {
+    docker {
+      image 'node:14-alpine'
+      args '-p 3000:3000'
+    }
+  }
 
 
   stages {
-    stage('Prepare') {
+    stage('Prepare the flow') {
       steps {
         echo '*** Hi now we are preparing the flow'
-
-        script {
-          def test = 2 + 2 > 3 ? 'cool' : 'not cool'
-          echo "*** test: $test"
-        }
       }
     }
 
-    stage('Build') {
+    stage('Building it out') {
 
       steps {
         sh """
-        echo '*** Buidling it out'
-        """
-      }
-    }
-
-    stage('Test') {
-
-      steps {
-        sh """
-        echo '*** Testing'
+          npm install
+          npm run build
         """
       }
     }
