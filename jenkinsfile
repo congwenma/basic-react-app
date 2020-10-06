@@ -3,13 +3,13 @@ pipeline {
 
 
   stages {
-    stage('Preparing') {
+    stage('Prepare') {
       steps {
         echo '*** Hi now we are preparing the flow'
       }
     }
 
-    stage('Building') {
+    stage('Build') {
 
       steps {
         sh """
@@ -18,7 +18,7 @@ pipeline {
       }
     }
 
-    stage('Testing') {
+    stage('Test') {
 
       steps {
         sh """
