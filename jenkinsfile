@@ -1,17 +1,10 @@
 pipeline {
   agent {
-    docker { image 'node:14-alpine' }
+    docker {
+      image 'node:14-alpine'
+      args '-p 3000:3000'
+    }
   }
-  triggers {
-    // poll source control management system.
-    pollSCM('* * * * *') // once per min
-    // pollSCM('H/5 * * * *') // once per 5/min
-  }
-
-  // need to match jdk
-  // tools {
-  //   jdk 'Jdk12'
-  // }
 
   stages {
     stage('Prepare the flow') {
