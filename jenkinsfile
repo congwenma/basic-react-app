@@ -1,19 +1,29 @@
 pipeline {
-  agent {
-    docker {
-      image 'node:14-alpine'
-      args '-p 3000:3000'
-    }
-  }
+  agent any
 
   stages {
     stage('Prepare the flow') {
+      agent {
+        docker {
+          image 'node:14-alpine'
+          args '-p 3000:3000'
+        }
+      }
+
+
       steps {
         echo '*** Hi now we are preparing the flow'
       }
     }
 
     stage('Building it out') {
+      agent {
+        docker {
+          image 'node:14-alpine'
+          args '-p 3000:3000'
+        }
+      }
+
       steps {
         sh """
           npm install
