@@ -17,7 +17,9 @@ pipeline {
   stages {
     stage('Prepare the flow') {
       steps {
-        echo '*** Hi now we are preparing the flow'
+        script {
+          echo '*** Hi now we are preparing the flow'
+        }
       }
     }
 
