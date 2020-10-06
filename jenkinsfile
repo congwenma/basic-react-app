@@ -1,5 +1,7 @@
 pipeline {
-  agent any
+  agent {
+    docker { image 'node:14-alpine' }
+  }
   triggers {
     // poll source control management system.
     pollSCM('* * * * *') // once per min
