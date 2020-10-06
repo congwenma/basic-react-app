@@ -6,6 +6,11 @@ pipeline {
     stage('Prepare') {
       steps {
         echo '*** Hi now we are preparing the flow'
+
+        script {
+          def test = 2 + 2 > 3 ? 'cool' : 'not cool'
+          echo "test: $test"
+        }
       }
     }
 
