@@ -7,8 +7,8 @@
 //    /var/jenkins_home/workspace/multibranch_PR-1@tmp/durable-1be7b220/script.sh: 1: /var/jenkins_home/workspace/multibranch_PR-1@tmp/durable-1be7b220/script.sh: docker: not found
 pipeline {
   agent {
+    node { label 'proper docker registry' }
     docker {
-      label 'proper docker registry'
       image 'node:14-alpine'
       args '-p 3000:3000'
     }
