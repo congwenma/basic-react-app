@@ -13,26 +13,40 @@ pipeline {
     }
   }
 
+  environment {
+    NPM_TOKEN = 'd81de01d-94ee-455a-9469-f63c83c40fed'
+    GH_TOKEN  = '3fd04da25f2846a6892a34a36d8a67f13e9d85d6'
+  }
+
 
   stages {
     stage('Prepare the flow') {
       steps {
         script {
           echo "*** Hi now we are preparing the flow ${env.BRANCH_NAME}"
-          if (env.BRANCH_NAME ==~ /release_v(\d.\d*)/) {
-            echo "*** Releasing"
-          } else {
-            echo "*** Not Releasing"
-          }
+          // if (env.BRANCH_NAME ==~ /release_v(\d.\d*)/) {
+          //   echo "*** Releasing"
+          // } else {
+          //   echo "*** Not Releasing"
+          // }
+
+          sh '''
+          # Configure your test steps here (checkout, npm install test)
+          npm install
+          npm test
+          '''
         }
       }
     }
 
-    stage('Building it out') {
+    stage('Release') {
+      // tools {
+      //   nodejs "node 10.18"
+      // }
 
       steps {
         sh """
-          ls -hal build/
+          npx semantic-release
         """
       }
     }
