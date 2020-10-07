@@ -1,0 +1,50 @@
+version: 2.1
+# NOTE: orbs are `packages of functionality` that can be included in the CC config to provide convenient access to functionality, in this case the ability to build, tag and publish Docker images.
+orbs:
+  docker: circleci/docker@0.5.13
+
+# NOTE: this is how we run our unit tests, etc.
+jobs:
+  run_tests:
+    working_directory: ~/react-app
+    docker:
+      # NOTE: this is the image we use to run the job
+      - image: circleci/node:10.15.3
+    steps:
+      - checkout
+      - run:
+          name: update-npm
+          command: "sudo npm install -g npm@latest"
+
+      - restore_cache:
+          name: restore-cache
+          key: dependency-cache-{{ checksum "package.json" }}
+
+      - run:
+          name: npm-install
+          command: npm install
+
+      - save_cache:
+          name: save-cache
+          key: dependency-cache-{{ checksum "package.json" }}
+          paths:
+            - ./node_modules
+
+      - run:
+          name: test
+          command: npm test
+
+workflows:
+  version: 2
+  build_deploy:
+    jobs:
+      - run_tests
+      - docker/publish:
+          image: congwenma/basic-react-app
+          dockerfile: Dockerfile
+          requires:
+            - run_tests
+          filters:
+            branches:
+              only:
+                - master
