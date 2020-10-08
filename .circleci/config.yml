@@ -17,12 +17,15 @@ jobs:
           command: "sudo npm install -g npm@latest"
 
       - restore_cache:
+          name: restore-cache
           key: dependency-cache-{{ checksum "package.json" }}
+
       - run:
           name: npm-install
           command: npm install
 
       - save_cache:
+          name: save-cache
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
             - ./node_modules
