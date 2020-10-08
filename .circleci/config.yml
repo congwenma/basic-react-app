@@ -41,7 +41,7 @@ workflows:
       - run_tests
       - docker/publish:
           image: congwenma/basic-react-app
-          dockerfile: dockerfile
+          dockerfile: Dockerfile
           requires:
             - run_tests
           filters:
