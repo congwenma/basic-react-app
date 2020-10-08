@@ -34,7 +34,6 @@ jobs:
           name: test
           command: npm test
 
-
 workflows:
   version: 2
   build_deploy:
