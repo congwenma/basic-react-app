@@ -20,7 +20,7 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Hello, World b2-1
+          Hello, World one-flow
         </a>
       </header>
     </div>
