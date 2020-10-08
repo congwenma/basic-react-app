@@ -6,6 +6,8 @@ import logo from './logo.svg';
 
 var somethingDuringOneflow = "1";
 
+var somethingDuringHotfix = "1";
+
 function App() {
   return (
     <div className="App">
