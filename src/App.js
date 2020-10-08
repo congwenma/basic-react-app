@@ -4,6 +4,8 @@ import React from 'react';
 
 import logo from './logo.svg';
 
+var somethingDuringOneflow = "1";
+
 function App() {
   return (
     <div className="App">
