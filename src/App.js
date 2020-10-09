@@ -22,7 +22,7 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Hello, World one-flow, hotfix
+          Hello, World one-flow, 1.1.0
         </a>
       </header>
     </div>
