@@ -1,5 +1,5 @@
 pipeline {
-    agent any
+    agent { image 'node:9-alpine' }
     stages {
         stage('Build') {
             steps {
@@ -10,6 +10,7 @@ pipeline {
                     pwd
                     whoami
                     uname -a
+                    node --version
                 '''
             }
         }
