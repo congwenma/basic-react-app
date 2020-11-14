@@ -8,6 +8,7 @@
 pipeline {
   agent {
     docker {
+      label 'docker'
       // label 'proper docker registry'
       image 'node:14-alpine'
     }
